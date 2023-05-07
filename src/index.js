@@ -29,6 +29,19 @@ function* fetchAllMovies() {
         
 }
 
+function* fetchMovieDetails(action) {
+    //action.payload is id of clicked movie
+    try {
+        const movieDetails = yield axios.get(`/api/movie/details/${action.payload}`);
+        const movieGenres = yield axios.get(`/api/movie/genres/${action.payload}`);
+        yield put({ type: 'SET_MOVIE_DETAILS', payload: movieDetails.data });
+        yield put({ type: 'SET_MOVIE_GENRES', payload: movieGenres.data });
+    } catch (error) {
+        console.log('get movie details error', error);
+    }
+}
+
+
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
 
@@ -52,15 +65,38 @@ const genres = (state = [], action) => {
     }
 }
 
+//data for movie at id clicked
+const movieDetails = (state = {}, action) => {
+    switch (action.type) {
+        case 'SET_MOVIE_DETAILS':
+            return action.payload;
+        default:
+            return state;
+    }
+}
+//data for movie at id clicked genre
+const genresDetails = (state = [], action) => {
+    switch (action.type) {
+        case 'SET_MOVIE_GENRES':
+            return action.payload;
+        default:
+            return state;
+    }
+}
+
+
 // Create one store that all components can use
 const storeInstance = createStore(
     combineReducers({
         movies,
         genres,
+        movieDetails,
+        genresDetails,
     }),
     // Add sagaMiddleware to our store
     applyMiddleware(sagaMiddleware, logger),
 );
+
 
 // Pass rootSaga into our sagaMiddleware
 sagaMiddleware.run(rootSaga);

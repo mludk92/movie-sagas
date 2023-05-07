@@ -1,11 +1,14 @@
 // MovieDetails.js
 import React from 'react';
-import Card from 'react-bootstrap/Card';
 import './MovieDetails.css';
+import { useSelector } from 'react-redux';
 
-const MovieDetails = ({ movie }) => {
+const MovieDetails = () => {
+  const movieDetails = useSelector((state) => state.movieDetails);
+  const movieGenres = useSelector((state) => state.movieGenres);
   return (
   <>
+  <div></div>
   </>
   );
 };
