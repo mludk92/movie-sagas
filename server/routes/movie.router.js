@@ -32,18 +32,22 @@ router.get('/details/:id', (req, res) => {
 
 
 router.get('/genres/:id', (req, res) => {
-  const genreId = req.params.id;
-  const query = `SELECT * FROM genres WHERE "id" = $1`;
-  pool.query(query, [genreId])
+  const movieId = req.params.id;
+  const query = `
+    SELECT genres.name 
+    FROM movies_genres
+    JOIN genres ON movies_genres.genre_id = genres.id
+    WHERE movies_genres.movie_id = $1;
+  `;
+  pool.query(query, [movieId])
     .then(result => {
-      res.send(result.rows[0]);
+      res.send(result.rows);
     })
     .catch(err => {
-      console.log('ERROR: Get genre details', err);
+      console.log('ERROR: Get movie genres', err);
       res.sendStatus(500);
     });
 });
-
 
 
 

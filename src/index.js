@@ -12,9 +12,12 @@ import { takeEvery, put } from 'redux-saga/effects';
 import axios from 'axios';
 
 // Create the rootSaga generator function
+// Create the rootSaga generator function
 function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', fetchAllMovies);
+    yield takeEvery('FETCH_MOVIE_DETAILS', fetchMovieDetails); //specifics for clicked movies 
 }
+
 
 function* fetchAllMovies() {
     // get all movies from the DB
@@ -66,7 +69,7 @@ const genres = (state = [], action) => {
 }
 
 //data for movie at id clicked
-const movieDetails = (state = {}, action) => {
+const movieDetails = (state = [], action) => {
     switch (action.type) {
         case 'SET_MOVIE_DETAILS':
             return action.payload;
