@@ -3,17 +3,24 @@
     flex-wrap: wrap;
 }
 
-/* card onclick settings */
-.card {
-    cursor: pointer;
-  }
-  
-  .card-selected {
-    cursor: pointer;
-    transform: scale(1.5) translate(-50%, -50%);
-    position: fixed;
-    top: 50%;
-    left: 50%;
-  }
-  
+.movies {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.movie-card {
+  min-width: calc(33.3333% - 20px);
+  margin: 10px;
+  box-sizing: border-box;
+  border-style: solid;
+  border-width: 4px;
+  border-color: gold;
+}
+
+.image {
+  border-style: solid;
+  border-width: 2px;
+  border-color: gold;
+}
   
