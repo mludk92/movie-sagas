@@ -1,5 +1,9 @@
 .App {
   text-align: center;
+  background-color: black;
+  color:goldenrod;
+  text-shadow: 2px 2px 2px black;
+  
 }
 
 
