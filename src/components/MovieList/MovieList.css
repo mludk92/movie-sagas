@@ -2,3 +2,18 @@
     display : flex;
     flex-wrap: wrap;
 }
+
+/* card onclick settings */
+.card {
+    cursor: pointer;
+  }
+  
+  .card-selected {
+    cursor: pointer;
+    transform: scale(1.5) translate(-50%, -50%);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+  }
+  
+  
